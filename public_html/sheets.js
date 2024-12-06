@@ -33,5 +33,6 @@ export async function getProductos() {
     };
     productos.push(newProductos);
   });
+  
   return productos;
 }

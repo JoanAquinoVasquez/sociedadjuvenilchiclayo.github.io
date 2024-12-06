@@ -20,7 +20,7 @@ document.getElementById("gis").addEventListener("load",gisLoaded());
 
 document.getElementById('authorize_button').style.visibility = 'hidden';
 document.getElementById('signout_button').style.visibility = 'hidden';
-
+document.getElementById('total-container').style.visibility = 'hidden';
 /**
  * Callback after api.js is loaded.
  */
@@ -73,6 +73,8 @@ function handleAuthClick() {
     }
     document.getElementById('signout_button').style.visibility = 'visible';
     document.getElementById('authorize_button').innerText = 'Refresh';
+        // Mostrar "Total" y "Hacer pedido"
+    document.getElementById('total-container').style.display = 'block';
     productos = await getProductos();
   };
 
@@ -97,6 +99,7 @@ function handleSignoutClick() {
     document.getElementById('content').innerText = '';
     document.getElementById('authorize_button').innerText = 'Authorize';
     document.getElementById('signout_button').style.visibility = 'hidden';
+    document.getElementById('total-container').style.display = 'none';
   }
 
 
