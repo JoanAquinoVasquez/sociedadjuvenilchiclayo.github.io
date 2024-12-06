@@ -1,19 +1,21 @@
-import { getProductos } from './sheets.js';
-// Definir `total` globalmente dentro de `auth.js` 
+import { getProductos } from "./sheets.js";
+// Definir `total` globalmente dentro de `auth.js`
 let total = 0;
-let productos = [];  // Asegúrate de que 'productos' esté definida aquí a nivel global.
+let productos = []; // Asegúrate de que 'productos' esté definida aquí a nivel global.
 let totalPriceElement = 0;
 
 // TODO(developer): Set to client ID and API key from the Developer Console
-const CLIENT_ID = '675172685345-ntphot9tfl34upqnnh0c266qqjs9e269.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyC76rfUZEarE49OqnT9-tbltAnO91KaCRo';
+const CLIENT_ID =
+  "675172685345-ntphot9tfl34upqnnh0c266qqjs9e269.apps.googleusercontent.com";
+const API_KEY = "AIzaSyC76rfUZEarE49OqnT9-tbltAnO91KaCRo";
 
 // Discovery doc URL for APIs used by the quickstart
-const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
+const DISCOVERY_DOC =
+  "https://sheets.googleapis.com/$discovery/rest?version=v4";
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
+const SCOPES = "https://www.googleapis.com/auth/spreadsheets";
 
 let tokenClient;
 let gapiInited = false;
@@ -22,14 +24,14 @@ let gisInited = false;
 document.getElementById("gapi").addEventListener("load", gapiLoaded());
 document.getElementById("gis").addEventListener("load", gisLoaded());
 
-document.getElementById('authorize_button').style.visibility = 'hidden';
-document.getElementById('signout_button').style.visibility = 'hidden';
-document.getElementById('total-container').style.display = 'none';
+document.getElementById("authorize_button").style.visibility = "hidden";
+document.getElementById("signout_button").style.visibility = "hidden";
+document.getElementById("total-container").style.display = "none";
 /**
  * Callback after api.js is loaded.
  */
 function gapiLoaded() {
-  gapi.load('client', initializeGapiClient);
+  gapi.load("client", initializeGapiClient);
 }
 
 /**
@@ -52,7 +54,7 @@ function gisLoaded() {
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
-    callback: '', // defined later
+    callback: "", // defined later
   });
   gisInited = true;
   maybeEnableButtons();
@@ -63,7 +65,7 @@ function gisLoaded() {
  */
 function maybeEnableButtons() {
   if (gapiInited && gisInited) {
-    document.getElementById('authorize_button').style.visibility = 'visible';
+    document.getElementById("authorize_button").style.visibility = "visible";
   }
 }
 
@@ -73,23 +75,25 @@ function maybeEnableButtons() {
 function handleAuthClick() {
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
-      throw (resp);
+      throw resp;
     }
-    document.getElementById('signout_button').style.visibility = 'visible';
-    document.getElementById('authorize_button').innerText = 'Actualizar';
+    document.getElementById("signout_button").style.visibility = "visible";
+    document.getElementById("authorize_button").innerText = "Actualizar";
     // Mostrar "Total" y "Hacer pedido"
-    document.getElementById('total-container').style.display = 'block';
+    document.getElementById("total-container").style.display = "block";
+
+    // Aquí puedes hacer algo con el nombre, como registrarlo en el pedido
     productos = await getProductos();
-    cargarProductos();  // Asegúrate de que esta función esté definida en tu HTML o JS principal.
+    cargarProductos(); // Asegúrate de que esta función esté definida
   };
 
   if (gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
     // when establishing a new session.
-    tokenClient.requestAccessToken({ prompt: 'consent' });
+    tokenClient.requestAccessToken({ prompt: "consent" });
   } else {
     // Skip display of account chooser and consent dialog for an existing session.
-    tokenClient.requestAccessToken({ prompt: '' });
+    tokenClient.requestAccessToken({ prompt: "" });
   }
 }
 
@@ -100,14 +104,12 @@ function handleSignoutClick() {
   const token = gapi.client.getToken();
   if (token !== null) {
     google.accounts.oauth2.revoke(token.access_token);
-    gapi.client.setToken('');
-    document.getElementById('content').innerText = '';
-    document.getElementById('authorize_button').innerText = 'Authorize';
-    document.getElementById('signout_button').style.visibility = 'hidden';
-    document.getElementById('total-container').style.display = 'none';
+    gapi.client.setToken("");
+    document.getElementById("content").innerText = "";
+    document.getElementById("authorize_button").innerText = "Authorize";
+    document.getElementById("signout_button").style.visibility = "hidden";
+    document.getElementById("total-container").style.display = "none";
   }
-
-
 }
 
 // Función para cargar los productos
@@ -176,7 +178,9 @@ function cargarProductos() {
 // Función para actualizar el total de los productos seleccionados
 function updateTotal() {
   total = 0;
-  const inputs = document.querySelectorAll('#items-container input[type="number"]');
+  const inputs = document.querySelectorAll(
+    '#items-container input[type="number"]'
+  );
   inputs.forEach((input) => {
     const price = parseFloat(input.dataset.price);
     const quantity = parseInt(input.value) || 0;
@@ -185,7 +189,7 @@ function updateTotal() {
   totalPriceElement.textContent = `S/. ${total.toFixed(2)}`;
 
   // Obtener el botón de realizar pedido
-  const pedidoButton = document.getElementById('hacer-pedido');
+  const pedidoButton = document.getElementById("hacer-pedido");
   // Activar o desactivar el botón de "Hacer Pedido" basado en el total
   if (total === 0) {
     pedidoButton.setAttribute("disabled", "true"); // Deshabilitar si el total es 0
@@ -194,11 +198,7 @@ function updateTotal() {
   }
 }
 
-
-
 // Exponer las funciones a nivel global
 window.handleAuthClick = handleAuthClick;
 window.handleSignoutClick = handleSignoutClick;
 window.productos = productos; // Hacer 'productos' accesible globalmente
-
-
