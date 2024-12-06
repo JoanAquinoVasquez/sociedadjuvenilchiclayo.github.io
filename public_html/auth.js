@@ -125,7 +125,7 @@ function cargarProductos() {
               <strong class="item-name">${producto.producto}</strong>
               <p class="mt-1 mb-0">${producto.descripcion}</p>
             </div>
-            <div class="col-4 text-end">
+            <div class="col-3 text-end">
               <h6 class="text-primary">S/. ${producto.precio}</h6>
             </div>
           </div>
@@ -188,10 +188,9 @@ function updateTotal() {
   const pedidoButton = document.getElementById('hacer-pedido');
   // Activar o desactivar el botón de "Hacer Pedido" basado en el total
   if (total === 0) {
-    console.log("hola");
-    pedidoButton.disabled = true;  // Habilitar el botón si el total es mayor que 0
+    pedidoButton.setAttribute("disabled", "true"); // Deshabilitar si el total es 0
   } else {
-    pedidoButton.disabled = false;   // Deshabilitar el botón si el total es 0
+    pedidoButton.removeAttribute("disabled"); // Habilitar si el total es mayor a 0
   }
 }
 
