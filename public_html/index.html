@@ -196,138 +196,8 @@
           Realiza tu pedido en nuestra
         </h6>
         <h3 class="section-title mb-6 pb-3 text-center">Carta Especial</h3>
-        <div class="row">
-          <div class="col-md-6 mb-4">
-            <a href="javascrip:void(0)" class="custom-list">
-              <div class="img-holder">
-                <img
-                  src="assets/imgs/dish-1.jpg"
-                  alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page"
-                />
-              </div>
-              <div class="info">
-                <div class="head clearfix">
-                  <h5 class="title float-left">Aperiam incidunt dicta</h5>
-                  <p class="float-right text-primary">S/. 25</p>
-                </div>
-                <div class="body">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing Eos,
-                    earum dicta est veniam beatae libero!
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 mb-4">
-            <a href="javascrip:void(0)" class="custom-list">
-              <div class="img-holder">
-                <img
-                  src="assets/imgs/dish-2.jpg"
-                  alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page"
-                />
-              </div>
-              <div class="info">
-                <div class="head clearfix">
-                  <h5 class="title float-left">Facere molestiae quaerat</h5>
-                  <p class="float-right text-primary">S/. 35</p>
-                </div>
-                <div class="body">
-                  <p>
-                    Voluptatem voluptate ad fugit aliquam, laboriosam neque vero
-                    incidunt itaque.
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 mb-4">
-            <a href="javascrip:void(0)" class="custom-list">
-              <div class="img-holder">
-                <img
-                  src="assets/imgs/dish-3.jpg"
-                  alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page"
-                />
-              </div>
-              <div class="info">
-                <div class="head clearfix">
-                  <h5 class="title float-left">Veniam Beatae Libero</h5>
-                  <p class="float-right text-primary">S/. 18</p>
-                </div>
-                <div class="body">
-                  <p>
-                    Accusamus libero quo tempore suscipit molestias qui quam
-                    illo facere aspernatur esse! Doloribus?
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 mb-4">
-            <a href="javascrip:void(0)" class="custom-list">
-              <div class="img-holder">
-                <img
-                  src="assets/imgs/dish-4.jpg"
-                  alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page"
-                />
-              </div>
-              <div class="info">
-                <div class="head clearfix">
-                  <h5 class="title float-left">Incidunt Eius</h5>
-                  <p class="float-right text-primary">S/. 30</p>
-                </div>
-                <div class="body">
-                  <p>
-                    Doloremque maiores tempore, nostrum rerum nihil distinctio
-                    expedita voluptates eos deserunt.
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 mb-4">
-            <a href="javascrip:void(0)" class="custom-list">
-              <div class="img-holder">
-                <img
-                  src="assets/imgs/dish-5.jpg"
-                  alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page"
-                />
-              </div>
-              <div class="info">
-                <div class="head clearfix">
-                  <h5 class="title float-left">Nihil dDstinctio</h5>
-                  <p class="float-right text-primary">S/. 24</p>
-                </div>
-                <div class="body">
-                  <p>
-                    Doloremque maiores tempore, nostrum rerum expedita incidunt
-                    eius voluptates eos deserunt.
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 mb-4">
-            <a href="javascrip:void(0)" class="custom-list">
-              <div class="img-holder">
-                <img
-                  src="assets/imgs/dish-6.jpg"
-                  alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page"
-                />
-              </div>
-              <div class="info">
-                <div class="head clearfix">
-                  <h5 class="title float-left">Dignissimos quidem</h5>
-                  <p class="float-right text-primary">S/. 44</p>
-                </div>
-                <div class="body">
-                  <p>
-                    Doloremque maiores tempore, nostrum rerum nihil distinctio
-                    expedita voluptates eos deserunt.
-                  </p>
-                </div>
-              </div>
-            </a>
+        <div class="row" id="menu-container">
+
           </div>
         </div>
       </div>
@@ -681,6 +551,179 @@
     </footer>
     <!-- End of Page Footer -->
     <script>
+const carta = [
+  // Jugos
+  {
+    categoria: "Jugos",
+    nombre: "Jugo de Papaya",
+    precio: 5,
+    descripcion: "El clásico matutino que siempre te sonríe en el desayuno. Suave, tropical y con la dulzura que te hace decir: “Esto es puro amor de fruta”.",
+    imagen: "assets/imgs/jugo-papaya.png"
+  },
+  {
+    categoria: "Jugos",
+    nombre: "Jugo de Melon",
+    precio: 5,
+    descripcion: "Refrescante y jugoso como un susurro en verano.",
+    imagen: "assets/imgs/jugo-melon.png"
+  },
+  {
+    categoria: "Jugos",
+    nombre: "Jugo de Piña",
+    precio: 5,
+    descripcion: "Dulce con un toque de traviesa acidez, como esa bromita que al final siempre disfrutas. ¡Un sorbo y te sientes en la playa!",
+    imagen: "assets/imgs/jugo-piña.jpg"
+  },
+  {
+    categoria: "Jugos",
+    nombre: "Jugo de Fresa",
+    precio: 7,
+    descripcion: "El más romántico del grupo. Dulce, tentador y con un color que te enamora a primera vista.",
+    imagen: "assets/imgs/jugo-fresa.jpeg"
+  },
+  {
+    categoria: "Jugos",
+    nombre: "Jugo Surtido",
+    precio: 7,
+    descripcion: "Una fiesta en tu boca donde todas las frutas vienen a bailar. ¡No hay celos, solo pura diversión!",
+    imagen: "assets/imgs/jugo-surtido.jpg"
+  },
+  {
+    categoria: "Jugos",
+    nombre: "Jugo Especial",
+    precio: 10,
+    descripcion: "Porque tú eres especial, este jugo tiene un “no sé qué” que te deja suspirando. ¿Es la fruta secreta o el cariño con el que lo hacen?",
+    imagen: "assets/imgs/jugo-especial.png"
+  },
+
+  // Bebidas Calientes
+  {
+    categoria: "Bebidas Calientes",
+    nombre: "Café Americano",
+    precio: 3,
+    descripcion: "Directo al grano, como esa persona que siempre dice lo que piensa. Fuerte, sin rodeos, pero con un abrazo de energía.",
+    imagen: "assets/imgs/cafe-americano.jpeg"
+  },
+  {
+    categoria: "Bebidas Calientes",
+    nombre: "Café con Leche",
+    precio: 6,
+    descripcion: "El equilibrio perfecto entre la fuerza y la ternura. Un cariñito líquido para empezar el día con calma.",
+    imagen: "assets/imgs/cafe-leche.png"
+  },
+  {
+    categoria: "Bebidas Calientes",
+    nombre: "Chocolate",
+    precio: 7,
+    descripcion: "Puro placer caliente, dulce y con el abrazo reconfortante de la vida. Ideal para esos días de “¡necesito un mimo!”",
+    imagen: "assets/imgs/chocolate.jpg"
+  },
+  {
+    categoria: "Bebidas Calientes",
+    nombre: "Infusión",
+    precio: 2.5,
+    descripcion: "Tranquilidad en una taza. Como un susurro de la abuelita diciéndote que todo va a estar bien.",
+    imagen: "assets/imgs/infusion.jpg"
+  },
+
+  // Salados
+  {
+    categoria: "Salados",
+    nombre: "Humita con Sarza",
+    precio: 2,
+    descripcion: "Dulzura del choclo combinada con la picardía de la sarza. ¡Una mezcla que te da un cachetadita de sabor!",
+    imagen: "assets/imgs/humita.jpg"
+  },
+  {
+    categoria: "Salados",
+    nombre: "Triple Clásico",
+    precio: 12,
+    descripcion: "Tres pisos de pura delicia. Si los sándwiches fueran telenovelas, este sería el galán indiscutible.",
+    imagen: "assets/imgs/triple-clasico.jpg"
+  },
+
+  // Dulces
+  {
+    categoria: "Dulces",
+    nombre: "Keke",
+    precio: 2,
+    descripcion: "Esponjoso, dulce y siempre listo para alegrarte el día. Cada mordida es como una carcajada suave.",
+    imagen: "assets/imgs/keke.png"
+  },
+  {
+    categoria: "Dulces",
+    nombre: "Empanada de Pollo",
+    precio: 2.5,
+    descripcion: "Crujiente por fuera, jugosa por dentro. Un abrazo con relleno que te dice: 'Hoy es un buen día'.",
+    imagen: "assets/imgs/empanada.jpg"
+  }
+];
+
+// Seleccionamos el contenedor principal
+const container = document.querySelector('#menu-container');
+
+// Crear contenedores para cada sección
+const jugosContainer = document.createElement('div');
+jugosContainer.classList.add('seccion');
+jugosContainer.innerHTML = `<h3 class="category-title text-center text-primary mb-4">Jugos</h3>`;
+
+const bebidasCalientesContainer = document.createElement('div');
+bebidasCalientesContainer.classList.add('seccion');
+bebidasCalientesContainer.innerHTML = `<h3 class="category-title text-center text-primary mb-4">Bebidas Calientes</h3>`;
+
+const saladosContainer = document.createElement('div');
+saladosContainer.classList.add('seccion');
+saladosContainer.innerHTML = `<h3 class="category-title text-center text-primary mb-4">Salados</h3>`;
+
+const dulcesContainer = document.createElement('div');
+dulcesContainer.classList.add('seccion');
+dulcesContainer.innerHTML = `<h3 class="category-title text-center text-primary mb-4">Dulces</h3>`;
+
+// Recorrer el arreglo `carta[]` para insertar los productos en sus respectivas secciones
+carta.forEach((producto) => {
+  const itemHTML = `
+    <div class="category-section mb-1">
+    <div class="col-md-6 mb-4">
+      <a href="javascript:void(0)" class="custom-list">
+        <div class="img-holder">
+          <img src="${producto.imagen}" alt="${producto.nombre}" />
+        </div>
+        <div class="info">
+          <div class="head clearfix">
+            <h5 class="title float-left">${producto.nombre}</h5>
+            <p class="float-right text-primary">S/. ${producto.precio}</p>
+          </div>
+          <div class="body">
+            <p>${producto.descripcion}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    </div>
+  `;
+
+  // Agregar el producto a la sección correspondiente
+  if (producto.categoria === "Jugos") {
+    jugosContainer.insertAdjacentHTML("beforeend", itemHTML);
+  } else if (producto.categoria === "Bebidas Calientes") {
+    bebidasCalientesContainer.insertAdjacentHTML("beforeend", itemHTML);
+  } else if (producto.categoria === "Salados") {
+    saladosContainer.insertAdjacentHTML("beforeend", itemHTML);
+  } else if (producto.categoria === "Dulces") {
+    dulcesContainer.insertAdjacentHTML("beforeend", itemHTML);
+  }
+});
+
+// Insertar todas las secciones en el contenedor principal
+container.appendChild(jugosContainer);
+container.appendChild(bebidasCalientesContainer);
+container.appendChild(saladosContainer);
+container.appendChild(dulcesContainer);
+
+    </script>
+
+
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
         const container = document.getElementById("items-container");
         const totalPriceElement = document.getElementById("total-price");
@@ -712,6 +755,10 @@
             event.preventDefault();
             let orderDetails = "";
             let totalPrice = 0;
+            let contenidoPedido = {
+            id: Date.now(), // ID único para el pedido basado en el timestamp
+            productos: [],
+          };
 
             // Obtener los detalles de cada producto seleccionado
             const inputs = document.querySelectorAll(
@@ -726,6 +773,14 @@
                   input.closest(".item").querySelector(".item-name").textContent
                 }</strong> x${quantity} - S/. ${itemTotal.toFixed(2)}</p>`;
                 totalPrice += itemTotal;
+                // Agregar el producto a la lista de productos del pedido
+                contenidoPedido.productos.push({
+                  producto: input.closest(".item").querySelector(".item-name").textContent,
+                  cantidad: quantity,
+                  precio: price,
+                  total: itemTotal,
+                });
+
               }
             });
 
@@ -745,11 +800,41 @@
               html: `
                 <div>${orderDetails}</div>
                 <div><strong>Total:</strong> S/. ${totalPrice.toFixed(2)}</div>
-                <div><img src="assets/imgs/yape.png" alt="QR Code" style="width: 150px; height: 150px; margin: 20px;"></div>
+                <div><img src="assets/imgs/yape.png" alt="QR Code" style="width: 300px; height: 300px; margin: 20px;"></div>
               `,
               showCancelButton: true,
               confirmButtonText: "Hacer Pedido",
               cancelButtonText: "Cancelar",
+            })
+            
+            
+            
+            
+            .then(async (result) => {
+              if (result.isConfirmed) {
+                // Al hacer clic en "Hacer Pedido", enviamos el pedido a Google Sheets
+            contenidoPedido.total = totalPrice; // Agregar el total al objeto
+
+                try {
+                  const response = await subirPedido(contenidoPedido);
+                  console.log("Pedido enviado correctamente:", response);
+                  Swal.fire({
+                    icon: "success",
+                    title: "Pedido Confirmado",
+                    text: "Tu pedido ha sido realizado correctamente. ¡Gracias por colaborar ♥!", 
+                  }).then(() => {
+                    // Recargar la página después de que se muestre el mensaje de éxito
+                    location.reload();
+                  });
+                } catch (error) {
+                  console.error("Error al subir el pedido:", error);
+                  Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Hubo un problema al realizar tu pedido.",
+                  });
+                }
+              }
             });
           });
       });
