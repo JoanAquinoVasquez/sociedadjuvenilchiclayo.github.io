@@ -1,4 +1,4 @@
-import { getProductos } from "./sheets.js";
+import { getProductos } from "../js/sheets.js"; // Importar la función `getProductos` de `sheets.js`
 // Definir `total` globalmente dentro de `auth.js`
 let total = 0;
 let productos = []; // Asegúrate de que 'productos' esté definida aquí a nivel global.
