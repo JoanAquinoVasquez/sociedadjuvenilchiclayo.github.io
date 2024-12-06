@@ -40,16 +40,18 @@ export async function getProductos() {
 export async function subirPedido(contenido) {
   const update = [
     contenido.id, // ID único del pedido (puedes usar Date.now() o algún otro método)
+    contenido.nombreCliente, // Nombre del cliente
     contenido.productos.map((p) => `${p.producto} x${p.cantidad}`).join(", "), // Nombres de los productos y cantidades (ej: "Café Americano x2")
     contenido.total, // El total de la orden
-    "Pendiente", // Puedes agregar el estado del pedido si lo deseas
+    contenido.metodoPago, // El método de pago
+    "NO", // Puedes agregar el estado del pedido si lo deseas
     new Date().toISOString(), // Fecha y hora en que se realizó el pedido
   ];
 
   try {
     const response = await gapi.client.sheets.spreadsheets.values.append({
       spreadsheetId: "1Q6bWjxzIDk5KJzow7_BP0dZ_52c8w6QBguviHkSyuxI", // ID de la hoja de cálculo
-      range: "Pedidos!H4:L", // El rango donde agregarás los datos del pedido
+      range: "Pedidos!H4:N", // El rango donde agregarás los datos del pedido
       valueInputOption: "USER_ENTERED", // El tipo de entrada, para permitir formatos como fechas
       resource: {
         values: [update], // Los datos del pedido a insertar
