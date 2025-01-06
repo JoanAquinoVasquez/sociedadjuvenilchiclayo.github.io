@@ -1,7 +1,9 @@
 import { getProductos } from "../js/sheets.js"; // Importar la función `getProductos` de `sheets.js`
+import { getCarta } from "../js/sheets.js";
 // Definir `total` globalmente dentro de `auth.js`
 let total = 0;
 let productos = []; // Asegúrate de que 'productos' esté definida aquí a nivel global.
+let carta = []; // Asegúrate de que 'carta' esté definida aquí a nivel global.
 let totalPriceElement = 0;
 
 // TODO(developer): Set to client ID and API key from the Developer Console
@@ -42,6 +44,8 @@ async function initializeGapiClient() {
   });
   gapiInited = true;
   maybeEnableButtons();
+  carta = await getCarta();
+  cargarCarta(); // Asegúrate de que esta función esté definida
 }
 
 /**
@@ -148,6 +152,58 @@ function handleSignoutClick() {
   }
 }
 
+// Llamar a la función para obtener los productos de la carta especial
+async function cargarCarta() {
+  const carta = await getCarta(); // Obtener la carta especial
+  console.log(carta); // Mostrar la carta en la consola
+
+  // Si no se obtienen productos, se termina la ejecución
+  if (!carta || carta.length === 0) {
+    console.warn("No se encontraron productos");
+    return;
+  }
+
+  // Agrupamos los productos por categoría
+  const categorias = [
+    ...new Set(carta.map((carta_item) => carta_item.categoria)),
+  ];
+
+  console.log(categorias);
+
+  const container = document.getElementById("menu-container");
+
+  categorias.forEach((categoria) => {
+    // Insertar título de la categoría
+    const seccionHTML = `
+    <div class="col-12">
+      <h3 class="category-title text-center text-primary mb-4">${categoria}</h3>
+    </div>
+  `;
+    container.insertAdjacentHTML("beforeend", seccionHTML);
+
+    // Filtrar productos por categoría y generar tarjetas
+    carta
+      .filter((producto) => producto.categoria === categoria)
+      .forEach((producto) => {
+        const itemHTML = `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3">  <!-- Ajustamos para tener 3 productos por fila -->
+          <div class="card shadow-sm" style="width: 100%; height: 350px;">  <!-- Mantén la altura fija pero aumenta el ancho -->
+            <img src="${producto.imagen}" class="card-img-top img-fluid" alt="${producto.producto}" style="width: 100%; height: 130px; object-fit: cover;">  <!-- Ajuste para que la imagen ocupe toda la altura y el ancho -->
+            <div class="card-body p-3 d-flex flex-column" style="flex-grow: 1;">  <!-- Se ajusta el cuerpo de la tarjeta -->
+              <h6 class="card-title" style="font-size: 1.3rem;">${producto.producto}</h6>  <!-- Título más grande -->
+              <p class="card-text text-muted" style="font-size: 0.9rem;">${producto.descripcion}</p>  <!-- Descripción sin recorte -->
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <span class="text-primary fw-bold" style="font-size: 1.2rem;">S/. ${producto.precio}</span> <!-- Aumentamos el tamaño del precio -->
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+        container.insertAdjacentHTML("beforeend", itemHTML);
+      });
+  });
+}
+
 // Función para cargar los productos
 function cargarProductos() {
   const container = document.getElementById("items-container");
@@ -238,3 +294,4 @@ function updateTotal() {
 window.handleAuthClick = handleAuthClick;
 window.handleSignoutClick = handleSignoutClick;
 window.productos = productos; // Hacer 'productos' accesible globalmente
+window.carta = carta; // Hacer 'carta' accesible globalmente
