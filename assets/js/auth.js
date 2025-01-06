@@ -24,9 +24,6 @@ let gisInited = false;
 document.getElementById("gapi").addEventListener("load", gapiLoaded());
 document.getElementById("gis").addEventListener("load", gisLoaded());
 
-document.getElementById("authorize_button").style.visibility = "hidden";
-document.getElementById("signout_button").style.visibility = "hidden";
-document.getElementById("total-container").style.display = "none";
 /**
  * Callback after api.js is loaded.
  */
@@ -64,8 +61,23 @@ function gisLoaded() {
  * Enables user interaction after all libraries are loaded.
  */
 function maybeEnableButtons() {
+  // Solo proceder si las bibliotecas están cargadas
   if (gapiInited && gisInited) {
-    document.getElementById("authorize_button").style.visibility = "visible";
+    // Obtener el token
+    const token = gapi.client.getToken();
+
+    if (token) {
+      // Si hay un token, mostramos el botón "Cerrar sesión" y el contenido
+      document.getElementById("authorize_button").style.display = "none"; // Ocultar "Iniciar sesión"
+      document.getElementById("signout_button").style.display = "inline-block"; // Mostrar "Cerrar sesión"
+      document.getElementById("total-container").style.display = "block"; // Mostrar el contenedor de total
+    } else {
+      // Si no hay token, mostramos el botón "Iniciar sesión"
+      document.getElementById("authorize_button").style.display =
+        "inline-block"; // Mostrar "Iniciar sesión"
+      document.getElementById("signout_button").style.display = "none"; // Ocultar "Cerrar sesión"
+      document.getElementById("total-container").style.display = "none"; // Ocultar el contenedor de total
+    }
   }
 }
 
@@ -77,9 +89,10 @@ function handleAuthClick() {
     if (resp.error !== undefined) {
       throw resp;
     }
-    document.getElementById("signout_button").style.visibility = "visible";
-    document.getElementById("authorize_button").innerText = "Actualizar";
-    // Mostrar "Total" y "Hacer pedido"
+    // Mostrar el botón de "Cerrar Sesión"
+    // Actualizar el estado de los botones
+    document.getElementById("authorize_button").style.display = "none";
+    document.getElementById("signout_button").style.display = "inline-block";
     document.getElementById("total-container").style.display = "block";
 
     // Aquí puedes hacer algo con el nombre, como registrarlo en el pedido
@@ -102,13 +115,36 @@ function handleAuthClick() {
  */
 function handleSignoutClick() {
   const token = gapi.client.getToken();
+
   if (token !== null) {
-    google.accounts.oauth2.revoke(token.access_token);
-    gapi.client.setToken("");
-    document.getElementById("content").innerText = "";
-    document.getElementById("authorize_button").innerText = "Authorize";
-    document.getElementById("signout_button").style.visibility = "hidden";
-    document.getElementById("total-container").style.display = "none";
+    // Revocar el token de acceso
+    google.accounts.oauth2.revoke(token.access_token, function () {
+      // Limpiar el token de cliente
+      gapi.client.setToken("");
+
+      // Verificar si el elemento "content" existe antes de intentar modificarlo
+      const contentElement = document.getElementById("content");
+      if (contentElement) {
+        contentElement.innerText = ""; // Limpiar contenido
+      }
+
+      // Mostrar el botón de autorizar e hidde el botón de cierre de sesión
+      const authorizeButton = document.getElementById("authorize_button");
+      const signoutButton = document.getElementById("signout_button");
+      const totalContainer = document.getElementById("total-container");
+
+      if (authorizeButton) {
+        authorizeButton.style.display = "inline-block";
+      }
+      if (signoutButton) {
+        signoutButton.style.display = "none";
+      }
+      if (totalContainer) {
+        totalContainer.style.display = "none";
+      }
+    });
+  } else {
+    console.log("Error...");
   }
 }
 
