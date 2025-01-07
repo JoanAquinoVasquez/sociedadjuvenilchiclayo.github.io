@@ -14,10 +14,7 @@
     <meta name="author" content="Devcrud" />
     <title>Sociedad Juvenil de Chiclayo</title>
     <!-- font icons -->
-    <link
-      rel="stylesheet"
-      href="assets/vendors/themify-icons/css/themify-icons.css"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <!-- Bootstrap + Pigga main styles -->
     <link rel="stylesheet" href="assets/css/pigga.css" />
   </head>
@@ -521,7 +518,6 @@
 
     <!-- End of Page Footer -->
 
-
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const container = document.getElementById("items-container");
@@ -650,15 +646,12 @@
             }).then(async (result) => {
               if (result.isConfirmed) {
                 const { customerName, paymentMethod } = result.value;
-                console.log("Pedido confirmado por:", customerName);
-                console.log("Método de pago:", paymentMethod);
                 // Al hacer clic en "Hacer Pedido", enviamos el pedido a Google Sheets
                 contenidoPedido.nombreCliente = customerName; // Agregar el nombre del cliente al objeto
                 contenidoPedido.metodoPago = paymentMethod; // Agregar el método de pago al objeto
                 contenidoPedido.total = totalPrice; // Agregar el total al objeto
                 try {
                   const response = await subirPedido(contenidoPedido);
-                  console.log("Pedido enviado correctamente:", response);
                   Swal.fire({
                     icon: "success",
                     title: "Pedido Confirmado",
@@ -668,7 +661,6 @@
                     location.reload();
                   });
                 } catch (error) {
-                  console.error("Error al subir el pedido:", error);
                   Swal.fire({
                     icon: "error",
                     title: "Error",
@@ -682,13 +674,13 @@
     </script>
 
     <!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <!-- Incluir SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- bootstrap affix -->
-    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/3.3.7/js/bootstrap.affix.js"></script>
 
     <!-- Pigga js -->
     <script src="assets/js/pigga.js"></script>

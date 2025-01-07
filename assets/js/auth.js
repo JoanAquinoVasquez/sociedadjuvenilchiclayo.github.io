@@ -155,7 +155,6 @@ function handleSignoutClick() {
 // Llamar a la función para obtener los productos de la carta especial
 async function cargarCarta() {
   const carta = await getCarta(); // Obtener la carta especial
-  console.log(carta); // Mostrar la carta en la consola
 
   // Si no se obtienen productos, se termina la ejecución
   if (!carta || carta.length === 0) {
@@ -168,7 +167,6 @@ async function cargarCarta() {
     ...new Set(carta.map((carta_item) => carta_item.categoria)),
   ];
 
-  console.log(categorias);
 
   const container = document.getElementById("menu-container");
 
