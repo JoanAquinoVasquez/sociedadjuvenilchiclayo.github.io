@@ -127,7 +127,7 @@ function handleSignoutClick() {
       gapi.client.setToken("");
 
       // Verificar si el elemento "content" existe antes de intentar modificarlo
-      const contentElement = document.getElementById("content");
+      const contentElement = document.getElementById("items-container");
       if (contentElement) {
         contentElement.innerText = ""; // Limpiar contenido
       }
